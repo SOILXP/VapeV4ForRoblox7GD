@@ -6251,6 +6251,31 @@ run(function()
 	})
 end)
 	
+local conn
+
+vape.Categories.World:CreateModule({
+	Name = "BallRide",
+	Function = function(callback)
+		if callback then
+			conn = RunService.Heartbeat:Connect(function()
+				local hrp = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+				local ball = workspace:FindFirstChild("Temp") and workspace.Temp:FindFirstChild("Ball")
+				if hrp and ball then
+					local offset = Vector3.new(0, 4, 0)
+					local target = ball.Position + offset
+					hrp.CFrame = CFrame.new(target, hrp.Position + hrp.CFrame.LookVector)
+				end
+			end)
+		else
+			if conn then
+				conn:Disconnect()
+				conn = nil
+			end
+		end
+	end,
+	Tooltip = "Ride the ball without locking its direction"
+})
+
 run(function()
 	local StaffDetector
 	local Mode
