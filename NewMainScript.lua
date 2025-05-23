@@ -9,7 +9,6 @@ local delfile = delfile or function(file)
 	writefile(file, '')
 end
 
-
 local BASE_URL = "https://raw.githubusercontent.com/SOILXP/VapeV4ForRoblox7GD/main/"
 
 local function downloadFile(path, func)
@@ -38,13 +37,12 @@ local function wipeFolder(path)
 	end
 end
 
-
+-- 📂 Ensure required folders exist
 for _, folder in { 'newvape', 'newvape/games', 'newvape/profiles', 'newvape/assets', 'newvape/libraries', 'newvape/guis' } do
 	if not isfolder(folder) then
 		makefolder(folder)
 	end
 end
-
 
 if not shared.VapeDeveloper then
 	local commit = "main"
@@ -56,6 +54,5 @@ if not shared.VapeDeveloper then
 	end
 	writefile("newvape/profiles/commit.txt", commit)
 end
-
 
 return loadstring(downloadFile("newvape/main.lua"), "main")()
