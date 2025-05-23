@@ -48,3 +48,16 @@ end
 -- ✅ Developer-free version — always use "main" branch
 if not shared.VapeDeveloper then
 	local commit = 'main' -- or use a static version string if desired
+
+	if (not isfile('newvape/profiles/commit.txt')) or readfile('newvape/profiles/commit.txt') ~= commit then
+		wipeFolder('newvape')
+		wipeFolder('newvape/games')
+		wipeFolder('newvape/guis')
+		wipeFolder('newvape/libraries')
+	end
+
+	writefile('newvape/profiles/commit.txt', commit)
+end
+
+-- ✅ Load main module
+return loadstring(downloadFile('newvape/main.lua'), 'main')()
