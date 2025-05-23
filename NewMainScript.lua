@@ -57,5 +57,5 @@ if not shared.VapeDeveloper then
 	writefile("newvape/profiles/commit.txt", commit)
 end
 
--- 🧠 Load your main.lua
+
 return loadstring(downloadFile("newvape/main.lua"), "main")()
